@@ -10,6 +10,7 @@ def main():
     soup = getSoup(TEST_URL)
     heading = soup.find(id='firstHeading')
     print(heading)
+    return heading
 
 
 def getAlternativeURL():
