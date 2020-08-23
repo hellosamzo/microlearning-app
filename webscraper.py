@@ -2,15 +2,18 @@ import re
 import requests
 from bs4 import BeautifulSoup
 
-TEST_URL = 'https://en.wikipedia.org/wiki/Napoleonic_Wars'
+TEST_URL = 'https://en.wikipedia.org/wiki/Area_51'
 
 ## main function that gets called from mail file
 def main():
     print('main function')
     soup = getSoup(TEST_URL)
-    heading = soup.find(id='firstHeading')
-    print(heading)
-    return heading
+    heading = soup.select("#firstHeading")[0].text
+    paragraphs = soup.select("p")
+    for para in paragraphs:
+        paragraphText = para
+        print(paragraphText)
+    return heading, paragraphText
 
 
 def getAlternativeURL():

@@ -1,19 +1,20 @@
 import smtplib, ssl
 from webscraper import main as scraper
+from secrets import SENDER_EMAIL, RECEIVER_EMAIL, PASSWORD
 
 soupContent = scraper()
 
 port = 465  # SSL
 smtp_server = "smtp.gmail.com"
-sender_email = "" 
-receiver_email = ""  
-password = ''
+sender_email = SENDER_EMAIL
+receiver_email = RECEIVER_EMAIL 
+password = PASSWORD
 message = """\
-Subject: Your Daily History Text
+Subject: AREA 51
 
 %s
 
-This message was automated using Python.""" %soupContent
+This message was automated using Python.""" %soupContent[1]
 
 context = ssl.create_default_context()
 with smtplib.SMTP_SSL(smtp_server, port, context=context) as server:
