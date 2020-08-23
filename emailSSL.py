@@ -10,11 +10,11 @@ sender_email = SENDER_EMAIL
 receiver_email = RECEIVER_EMAIL 
 password = PASSWORD
 message = """\
-Subject: AREA 51
+Subject: {0}
 
-%s
+{1}
 
-This message was automated using Python.""" %soupContent[1]
+This message was automated using Python.""".format(soupContent[0], soupContent[1])
 
 context = ssl.create_default_context()
 with smtplib.SMTP_SSL(smtp_server, port, context=context) as server:
