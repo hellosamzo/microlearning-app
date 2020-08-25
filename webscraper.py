@@ -6,13 +6,14 @@ TEST_URL = 'https://en.wikipedia.org/wiki/Area_51'
 
 ## main function that gets called from mail file
 def main():
-    print('main function')
+    #print('main function')
     soup = getSoup(TEST_URL)
     heading = soup.select("#firstHeading")[0].text
-    paragraphs = soup.select("p")
-    for para in paragraphs:
-        paragraphText = para
-        print(paragraphText)
+    #paragraphs = soup.select("p")
+    #for para in paragraphs:
+    #    paragraphText = para
+    #    print(paragraphText)
+    paragraphText = soup.find("p").findNext("p").get_text()
     return heading, paragraphText
 
 
