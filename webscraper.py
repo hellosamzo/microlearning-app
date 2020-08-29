@@ -19,7 +19,7 @@ def main():
     #    print(paragraphText)
     paragraphText = soup.find("p").findNext("p").get_text()
     print('Heading: ' + heading)
-    return heading, paragraphText.encode('ascii',errors='ignore').decode('ascii')
+    return heading, paragraphText.encode('ascii',errors='ignore').decode('ascii'), url
     #.encode('ascii', 'ignore')
 
 

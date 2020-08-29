@@ -17,7 +17,9 @@ def sendEmail():
 
     {1}
 
-    This message was automated using Python.""".format(soupContent[0], soupContent[1])
+    Read more about this at: {2}
+
+    This message was automated using Python.""".format(soupContent[0], soupContent[1], soupContent[2])
 
     context = ssl.create_default_context()
     with smtplib.SMTP_SSL(smtp_server, port, context=context) as server:
