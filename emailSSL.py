@@ -3,10 +3,10 @@ from webscraper import main as scraper
 from secrets import SENDER_EMAIL, RECEIVER_EMAIL, PASSWORD
 import time
 
-soupContent = scraper()
 #startTime = time.time()
 
 def sendEmail():
+    soupContent = scraper()
     port = 465  # SSL
     smtp_server = "smtp.gmail.com"
     sender_email = SENDER_EMAIL

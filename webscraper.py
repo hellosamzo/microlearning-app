@@ -5,6 +5,9 @@ from bs4 import BeautifulSoup
 
 TEST_URL = 'https://en.wikipedia.org/wiki/Area_51'
 
+URL_LIST = ["https://en.wikipedia.org/wiki/Napoleonic_Wars", "https://en.wikipedia.org/wiki/Mediterranean_Sea", "https://en.wikipedia.org/wiki/Python_(programming_language)" ,
+    "https://en.wikipedia.org/wiki/Area_51", "https://en.wikipedia.org/wiki/Belgium", "https://en.wikipedia.org/wiki/Video_game_development"]
+
 ## main function that gets called from mail file
 def main():
     #print('main function')
@@ -18,15 +21,17 @@ def main():
     #    paragraphText = para
     #    print(paragraphText)
     paragraphText = soup.find("p").findNext("p").get_text()
-    print('Heading: ' + heading)
+    #print('Heading: ' + heading)
     return heading.encode('ascii',errors='ignore').decode('ascii'), paragraphText.encode('ascii',errors='ignore').decode('ascii'), url
     #.encode('ascii', 'ignore')
 
 
 def getURL():
     # make this user customisable somehow
-    urlList= ["https://en.wikipedia.org/wiki/Napoleonic_Wars", "https://en.wikipedia.org/wiki/Mediterranean_Sea", "https://en.wikipedia.org/wiki/Python_(programming_language)"]
-    return random.choice(urlList) # returns random URL 
+    url = random.choice(URL_LIST) # get random url
+    print(URL_LIST)
+    URL_LIST.remove(url) # remove url from list to prevent duplicates
+    return url
 
 def getAlternativeURL():
     return 'https://en.wikipedia.org/wiki/Python_(programming_language)'
