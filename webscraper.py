@@ -10,21 +10,22 @@ def main():
     #print('main function')
     url = getURL()
     soup = getSoup(url)
-    print('URL: ' + url)
-    heading = soup.select("#firstHeading")[0].text
+    #print('URL: ' + url)
+    #heading = soup.select("#firstHeading")[0].text
+    heading = soup.title.string
     #paragraphs = soup.select("p")
     #for para in paragraphs:
     #    paragraphText = para
     #    print(paragraphText)
     paragraphText = soup.find("p").findNext("p").get_text()
     print('Heading: ' + heading)
-    return heading.encode('ascii', 'ignore'), paragraphText
+    return heading, paragraphText.encode('ascii',errors='ignore').decode('ascii')
+    #.encode('ascii', 'ignore')
 
 
 def getURL():
     # make this user customisable somehow
     urlList= ["https://en.wikipedia.org/wiki/Napoleonic_Wars", "https://en.wikipedia.org/wiki/Mediterranean_Sea", "https://en.wikipedia.org/wiki/Python_(programming_language)"]
-    print(urlList)
     return random.choice(urlList) # returns random URL 
 
 def getAlternativeURL():
