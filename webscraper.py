@@ -11,15 +11,15 @@ def main():
     url = getURL()
     soup = getSoup(url)
     #print('URL: ' + url)
-    #heading = soup.select("#firstHeading")[0].text
-    heading = soup.title.string
+    heading = soup.select("#firstHeading")[0].text
+    #heading = soup.title.string
     #paragraphs = soup.select("p")
     #for para in paragraphs:
     #    paragraphText = para
     #    print(paragraphText)
     paragraphText = soup.find("p").findNext("p").get_text()
     print('Heading: ' + heading)
-    return heading, paragraphText.encode('ascii',errors='ignore').decode('ascii'), url
+    return heading.encode('ascii',errors='ignore').decode('ascii'), paragraphText.encode('ascii',errors='ignore').decode('ascii'), url
     #.encode('ascii', 'ignore')
 
 
