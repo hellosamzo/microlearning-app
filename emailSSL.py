@@ -9,6 +9,10 @@ import time
 
 def sendEmail():
     soupContent = scraper()
+    subject = soupContent[0]
+    paragraph = soupContent[1]
+    link = soupContent[2]
+
     port = 465  # SSL
     smtp_server = "smtp.gmail.com"
     sender_email = SENDER_EMAIL
@@ -16,7 +20,7 @@ def sendEmail():
     password = PASSWORD
     
     message = MIMEMultipart()
-    message["Subject"] = soupContent[0]
+    message["Subject"] = subject
     message["From"] = 'Microlearning App'
     message["To"] = RECEIVER_EMAIL
     body = """\
@@ -26,7 +30,7 @@ def sendEmail():
 
     Read more about this at: {2}
 
-    This message was automated using Python.""".format(soupContent[0], soupContent[1], soupContent[2])
+    This message was automated using Python.""".format(subject, paragraph, link)
     
     part1 = MIMEText(body, 'plain')
 
