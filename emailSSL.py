@@ -12,6 +12,8 @@ def sendEmail():
     subject = soupContent[0]
     paragraph = soupContent[1]
     link = soupContent[2]
+    lastMod = soupContent[3]
+    lastMod = lastMod[1:]
 
     port = 465  # SSL
     smtp_server = "smtp.gmail.com"
@@ -29,8 +31,8 @@ def sendEmail():
     {1}
 
     Read more about this at: {2}
-
-    This message was automated using Python.""".format(subject, paragraph, link)
+    
+    {3}""".format(subject, paragraph, link, lastMod)
     
     part1 = MIMEText(body, 'plain')
 
