@@ -3,6 +3,7 @@ from webscraper import main as scraper
 from secrets import SENDER_EMAIL, RECEIVER_EMAIL, PASSWORD#
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
+from ConfigParser import SafeConfigParser
 import time
 
 #startTime = time.time()

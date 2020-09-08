@@ -2,6 +2,7 @@ import re
 import requests
 import random
 from bs4 import BeautifulSoup
+from ConfigParser import SafeConfigParser
 
 TEST_URL = 'https://en.wikipedia.org/wiki/Area_51'
 
