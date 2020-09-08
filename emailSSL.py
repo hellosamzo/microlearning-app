@@ -8,6 +8,12 @@ import time
 
 #startTime = time.time()
 
+def getConfig():
+    parser = SafeConfigParser()
+    parser.read('config.ini')
+    print parser.get('test', 'url')
+
+
 def sendEmail():
     soupContent = scraper()
     subject = soupContent[0]
@@ -46,6 +52,7 @@ def sendEmail():
 
 while True:
     #print('time')
+    getConfig()
     sendEmail()
     time.sleep(60 - time.time() % 60)
 
