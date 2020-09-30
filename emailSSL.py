@@ -3,7 +3,7 @@ from webscraper import main as scraper
 from secrets import SENDER_EMAIL, RECEIVER_EMAIL, PASSWORD#
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
-from ConfigParser import SafeConfigParser
+from configparser import SafeConfigParser
 import time
 
 #startTime = time.time()
@@ -11,10 +11,11 @@ import time
 def getConfig():
     parser = SafeConfigParser()
     parser.read('config.ini')
-    print parser.get('test', 'url')
+    #print(parser.get('Test', 'url'))
+    return parser.get('Settings', 'email')
 
 
-def sendEmail():
+def sendEmail(senderEmail):
     soupContent = scraper()
     subject = soupContent[0]
     paragraph = soupContent[1]
@@ -24,7 +25,7 @@ def sendEmail():
 
     port = 465  # SSL
     smtp_server = "smtp.gmail.com"
-    sender_email = SENDER_EMAIL
+    sender_email = senderEmail
     receiver_email = RECEIVER_EMAIL 
     password = PASSWORD
     
@@ -52,7 +53,7 @@ def sendEmail():
 
 while True:
     #print('time')
-    getConfig()
-    sendEmail()
+    emailAddr = getConfig()
+    sendEmail(emailAddr)
     time.sleep(60 - time.time() % 60)
 
