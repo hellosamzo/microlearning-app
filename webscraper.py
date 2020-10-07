@@ -10,7 +10,7 @@ URL_LIST = ["https://en.wikipedia.org/wiki/Napoleonic_Wars", "https://en.wikiped
     "https://en.wikipedia.org/wiki/Area_51", "https://en.wikipedia.org/wiki/Belgium", "https://en.wikipedia.org/wiki/Video_game_development"]
 
 ## main function that gets called from mail file
-def main():
+def main(optionalURL=None):
     url = getURL()
     soup = getSoup(url)
     heading = soup.select("#firstHeading")[0].text

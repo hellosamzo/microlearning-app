@@ -16,6 +16,7 @@ def getConfig():
 
 
 def sendEmail(senderEmail):
+    # check config for urls, if exist, pass through as parameter
     soupContent = scraper()
     subject = soupContent[0]
     paragraph = soupContent[1]
