@@ -8,6 +8,7 @@ MicroLearning App uses a couple of technologies and libraries:
 
 * [Python] - general-purpose programming language
 * [configparser] - configuration file parser
+* [BeautifulSoup] - website scraper
 
 ### Installation
 
@@ -17,3 +18,4 @@ MicroLearning App uses a couple of technologies and libraries:
 
    [Python]: <https://www.python.org/>
    [configparser]: <https://docs.python.org/3/library/configparser.html>
+   [BeautifulSoup]: <https://www.crummy.com/software/BeautifulSoup/>
