@@ -1,10 +1,6 @@
 # MicroLearning App
 
-This is a cloud-enabled, mobile-ready, offline-storage, AngularJS powered HTML5 Markdown editor.
-
-  - Type some Markdown on the left
-  - See HTML in the right
-  - Magic
+A python program that sends emails to you about subjects e.g. History, in a microlearning fashion.
 
 ### Tech
 
