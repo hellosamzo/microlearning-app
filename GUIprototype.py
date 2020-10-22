@@ -19,6 +19,11 @@ class MyWindow(QMainWindow):
 		self.b1.move(100, 150)
 		self.b1.clicked.connect(self.b1_clicked)
 
+		self.c1 = QtWidgets.QComboBox(self)
+		self.c1.move(220, 150)
+		self.c1.addItem("URL 1")
+		self.c1.addItem("URL 2")
+
 	def b1_clicked(self):
 		self.label.setText("Email Sent")
 		self.update()
