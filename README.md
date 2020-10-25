@@ -2,8 +2,8 @@
 
 A python program that sends emails to you about subjects e.g. History, in a microlearning fashion.
 
-https://img.shields.io/github/issues/hellosamzo/microlearning-app
-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+![GitHub issues](https://img.shields.io/github/issues/hellosamzo/microlearning-app) ![GitHub last commit](https://img.shields.io/github/last-commit/hellosamzo/microlearning-app)
 ### Tech
 
 MicroLearning App uses a couple of technologies and libraries:
