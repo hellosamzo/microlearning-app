@@ -8,15 +8,22 @@ import time
 
 #startTime = time.time()
 
+parser = ConfigParser()
+parser.read('config.ini')
+
+def checkConfigURLs():
+    return True
+    # check if config has urls
+
 def getConfig():
-    parser = ConfigParser()
-    parser.read('config.ini')
     #print(parser.get('Test', 'url'))
     return parser.get('EmailSenderSettings', 'email'), parser.get('EmailSenderSettings', 'password'), parser.get('EmailReceiverSettings', 'email')
 
 
 def sendEmail(senderEmail, senderPass, recvEmail):
     # check config for urls, if exist, pass through as parameter
+    if checkConfigURLs():
+        print('true')
     soupContent = scraper()
     subject = soupContent[0]
     paragraph = soupContent[1]
