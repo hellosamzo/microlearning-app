@@ -12,10 +12,10 @@ def getConfig():
     parser = ConfigParser()
     parser.read('config.ini')
     #print(parser.get('Test', 'url'))
-    return parser.get('EmailSenderSettings', 'email'), parser.get('EmailSenderSettings', 'password')
+    return parser.get('EmailSenderSettings', 'email'), parser.get('EmailSenderSettings', 'password'), parser.get('EmailReceiverSettings', 'email')
 
 
-def sendEmail(senderEmail):
+def sendEmail(senderEmail, senderPass, recvEmail):
     # check config for urls, if exist, pass through as parameter
     soupContent = scraper()
     subject = soupContent[0]
@@ -27,13 +27,13 @@ def sendEmail(senderEmail):
     port = 465  # SSL
     smtp_server = "smtp.gmail.com"
     sender_email = senderEmail
-    receiver_email = emailPass 
-    password = PASSWORD
+    receiver_email = recvEmail 
+    password = senderPass
     
     message = MIMEMultipart()
     message["Subject"] = subject
     message["From"] = 'Microlearning App'
-    message["To"] = RECEIVER_EMAIL
+    message["To"] = receiver_email
     body = """\
     {0}
 
@@ -54,8 +54,8 @@ def sendEmail(senderEmail):
 
 while True:
     #print('time')
-    emailAddr, emailPass = getConfig()
+    emailAddr, emailPass, recvEmail = getConfig()
     #print(emailPass)
-    sendEmail(emailAddr)
+    sendEmail(emailAddr, emailPass, recvEmail)
     time.sleep(60 - time.time() % 60)
 
