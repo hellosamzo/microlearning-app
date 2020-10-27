@@ -17,7 +17,7 @@ def checkConfigURLs():
 
 def getConfig():
     #print(parser.get('Test', 'url'))
-    return parser.get('EmailSenderSettings', 'email'), parser.get('EmailSenderSettings', 'password'), parser.get('EmailReceiverSettings', 'email'), parser.get('GeneralSettings', 'frequencySeconds')
+    return parser.get('EmailSenderSettings', 'email'), parser.get('EmailSenderSettings', 'password'), parser.get('EmailReceiverSettings', 'email'), parser.get('GeneralSettings', 'frequencySeconds'), parser.get('GeneralSettings', 'emailAmountPerDay')
 
 
 def sendEmail(senderEmail, senderPass, recvEmail):
@@ -61,8 +61,12 @@ def sendEmail(senderEmail, senderPass, recvEmail):
 
 while True:
     #print('time')
-    emailAddr, emailPass, recvEmail, frequencySeconds = getConfig()
+    emailAddr, emailPass, recvEmail, frequencySeconds, emailAmountPerDay = getConfig()
     #print(emailPass)
-    sendEmail(emailAddr, emailPass, recvEmail)
-    time.sleep(int(frequencySeconds)) 
+    amount = int(emailAmountPerDay)
+    while(amount > 0):
+        print(amount)
+        sendEmail(emailAddr, emailPass, recvEmail)
+        amount =-1
+        time.sleep(int(frequencySeconds)) 
 
