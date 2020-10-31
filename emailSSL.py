@@ -1,5 +1,6 @@
 import smtplib, ssl
 from webscraper import main as scraper
+from APIHandler import apiPOST as apiPOST
 from secrets import SENDER_EMAIL, RECEIVER_EMAIL, PASSWORD#
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
@@ -12,8 +13,10 @@ parser = ConfigParser()
 parser.read('config.ini')
 
 def checkConfigURLs():
-    return True
-    # check if config has urls
+    if parser.get('GeneralSettings', 'customURLs') == 'true':
+        return True
+    else:
+        return False
 
 def getConfig():
     #print(parser.get('Test', 'url'))
@@ -23,7 +26,11 @@ def getConfig():
 def sendEmail(senderEmail, senderPass, recvEmail):
     # check config for urls, if exist, pass through as parameter
     if checkConfigURLs():
-        print('true')
+        print('custom url = true')
+    else:
+        testURL = apiPOST()
+        print('testurl: ' + testURL)
+
     soupContent = scraper()
     subject = soupContent[0]
     paragraph = soupContent[1]
