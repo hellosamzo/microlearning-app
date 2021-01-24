@@ -2,12 +2,16 @@ import re
 import requests
 import random
 from bs4 import BeautifulSoup
-from configparser import SafeConfigParser
+from configparser import ConfigParser
 
 TEST_URL = 'https://en.wikipedia.org/wiki/Area_51'
 
 URL_LIST = ["https://en.wikipedia.org/wiki/Napoleonic_Wars", "https://en.wikipedia.org/wiki/Mediterranean_Sea", "https://en.wikipedia.org/wiki/Python_(programming_language)" ,
     "https://en.wikipedia.org/wiki/Area_51", "https://en.wikipedia.org/wiki/Belgium", "https://en.wikipedia.org/wiki/Video_game_development"]
+
+    
+parser = ConfigParser()
+parser.read('config.ini')
 
 ## main function that gets called from mail file
 def main(optionalURL=None):
@@ -23,11 +27,20 @@ def main(optionalURL=None):
     paragraphText = soup.find("p").findNext("p").get_text()
     return heading.encode('ascii',errors='ignore').decode('ascii'), paragraphText.encode('ascii',errors='ignore').decode('ascii'), url, lastMod
 
+def getConfigURLs():
+    if parser.get('GeneralSettings', 'customURLs') == 'true':
+        url = parser.get('Urls', 'url1')
+        return url
+
 def getURL():
-    # make this user customisable somehow
-    url = random.choice(URL_LIST) # get random url
-    #print(URL_LIST)
-    URL_LIST.remove(url) # remove url from list to prevent duplicates
+
+    if parser.get('GeneralSettings', 'customURLs') == 'true':
+        url = getConfigURLs()
+    else:
+        # make this user customisable somehow
+        url = random.choice(URL_LIST) # get random url
+        #print(URL_LIST)
+        URL_LIST.remove(url) # remove url from list to prevent duplicates
     return url
 
 def getAlternativeURL():

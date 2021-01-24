@@ -12,25 +12,12 @@ import time
 parser = ConfigParser()
 parser.read('config.ini')
 
-def checkConfigURLs():
-    if parser.get('GeneralSettings', 'customURLs') == 'true':
-        return True
-    else:
-        return False
-
 def getConfig():
     #print(parser.get('Test', 'url'))
     return parser.get('EmailSenderSettings', 'email'), parser.get('EmailSenderSettings', 'password'), parser.get('EmailReceiverSettings', 'email'), parser.get('GeneralSettings', 'frequencySeconds'), parser.get('GeneralSettings', 'emailAmountPerDay')
 
 
 def sendEmail(senderEmail, senderPass, recvEmail):
-    # check config for urls, if exist, pass through as parameter
-    if checkConfigURLs():
-        print('custom url = true')
-    else:
-        testURL = apiPOST()
-        print('testurl: ' + testURL)
-
     soupContent = scraper()
     subject = soupContent[0]
     paragraph = soupContent[1]
